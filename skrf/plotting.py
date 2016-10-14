@@ -336,7 +336,7 @@ def plot_polar(theta, r, x_label=None, y_label=None, title=None,
     if ax is None:
         ax = plb.gca(polar=True)
 
-    ax.plot(theta, r, *args, **kwargs)
+    my_plot = ax.plot(theta, r, *args, **kwargs)
 
     if x_label is not None:
         ax.set_xlabel(x_label)
@@ -357,6 +357,8 @@ def plot_polar(theta, r, x_label=None, y_label=None, title=None,
         
     if plb.isinteractive():
         plb.draw()
+        
+    return my_plot
 
 def plot_complex_rectangular(z, x_label='Real', y_label='Imag',
     title='Complex Plane', show_legend=True, axis='equal', ax=None,
@@ -391,7 +393,7 @@ def plot_complex_rectangular(z, x_label='Real', y_label='Imag',
     '''
     x = npy.real(z)
     y = npy.imag(z)
-    plot_rectangular(x=x, y=y, x_label=x_label, y_label=y_label,
+    return plot_rectangular(x=x, y=y, x_label=x_label, y_label=y_label,
         title=title, show_legend=show_legend, axis=axis,
         ax=ax, *args, **kwargs)
 
@@ -427,7 +429,7 @@ def plot_complex_polar(z, x_label=None, y_label=None,
     '''
     theta = npy.angle(z)
     r = npy.abs(z)
-    plot_polar(theta=theta, r=r, x_label=x_label, y_label=y_label,
+    return plot_polar(theta=theta, r=r, x_label=x_label, y_label=y_label,
         title=title, show_legend=show_legend, axis_equal=axis_equal,
         ax=ax, *args, **kwargs)
 
